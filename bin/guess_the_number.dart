@@ -11,12 +11,12 @@ void main() {
 void random_computer() {
   var rng = Random();
   // random от 1 до 10
-  int random_number = rng.nextInt(10) + 1;
+  int random_number = rng.nextInt(100) + 1;
   int i = 0;
-  // счетчик 
+  // счетчик
   int count = 0;
   while (i <= random_number) {
-    print('Я загадал число от 1 до 10');
+    print('Я загадал число от 1 до 100');
     int user_input = int.tryParse(stdin.readLineSync()!) ?? 105;
     count += 1;
     if (user_input == random_number) {
@@ -32,20 +32,19 @@ void random_computer() {
   }
 }
 
-
-// среднее кол-во попыток для отгадывания числа 3
+// среднее кол-во попыток для отгадывания числа 6
 void random_user() {
   int i = 0;
   int t1 = 1;
-  int t2 = 10;
+  int t2 = 100;
   int count = 0;
   while (i <= 11) {
     count += 1;
-    // общая длинна делиться попалам, так остнется меньше вариантов 
+    // общая длинна делиться попалам, так остнется меньше вариантов
     int x = (t1 + t2) ~/ 2;
     print(
         'Твое число больше, меньше или равно $x ? \n1 - Больше  2 - Меньше  3 - Равно');
-    int choice = int.parse(stdin.readLineSync()!);
+    int choice = int.tryParse(stdin.readLineSync()!) ?? 105;
     if (choice == 3) {
       print('Я угадал. Спасибо за игру! Кол-во моих попыток $count');
       break;
@@ -53,6 +52,8 @@ void random_user() {
       t1 = x;
     } else if (choice == 2) {
       t2 = x;
+    } else if (choice == 105) {
+      print('Пиши 1, 2 или 3');
     }
   }
 }
